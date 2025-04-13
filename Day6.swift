@@ -29,30 +29,17 @@ let letterValues: [Character: Int] = [
 
 let input = readLine()!
 
-let temp = input.filter { $0.isLetter }
-
-let total1 = temp.count
+let total1 = input.filter { $0.isLetter }.count
 print("Part 1 answer: \(total1)")
 
-let total2 = temp.reduce(0, { $0 + letterValues[$1]! } )
+var temp = input.map { $0.isLetter ? letterValues[$0]! : 0 }
+
+let total2 = temp.reduce(0, +)
 print("Part 2 answer: \(total2)")
 
-let arr = Array(input)
-var newArr = [Int](repeating: 0, count: arr.count)
-arr.indices.forEach {
-  if arr[$0].isLetter {
-    newArr[$0] = letterValues[arr[$0]]!
-  } else {
-    var n = newArr[$0-1] * 2 - 5
-    if n < 1 {
-      n += 52
-    } else if n > 52 {
-      n -= 52
-    }
-
-    newArr[$0] = n
-  }
+for i in temp.indices where temp[i] == 0 {
+  let n = temp[i-1] * 2 - 5
+  temp[i] = n + 52 * (n < 1 ? 1 : n > 52 ? -1 : 0)
 }
-
-let total3 = newArr.reduce(0, +)
+let total3 = temp.reduce(0, +)
 print("Part 3 answer: \(total3)")

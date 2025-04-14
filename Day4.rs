@@ -16,9 +16,9 @@ fn main() {
 
 fn memory(line: &str) -> u32 {
   line.chars().fold(0, |acc, c| {
-    acc + match c.to_string().parse::<u32>() {
-      Ok(i) => i,
-      Err(_) => (c as u8 - 64) as u32
+    acc + match c.to_digit(10) {
+      Some(i) => i,
+      None => (c as u8 - 64) as u32
     }
   })
 }
@@ -27,9 +27,9 @@ fn lossy_compress(line: &str) -> String {
   let n = line.len() / 10;
 
   format!("{}{}{}",
-    &line[0..n],
+    &line[..n],
     line.len() - 2 * n,
-    &line[line.len()-n..line.len()]
+    &line[line.len()-n..]
   )
 }
 
@@ -42,9 +42,10 @@ fn lossless_compress(line: &str) -> String {
     let n = s.drain(
         ..s.chars().position(|e| e != c)
         .unwrap_or(s.len())
-      ).collect::<String>().len();
+      ).collect::<String>()
+      .len();
 
-    out = format!("{out}{n}{c}");
+    out += format!("{n}{c}").as_str();
   }
 
   out

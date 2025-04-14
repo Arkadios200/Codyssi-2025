@@ -35,7 +35,7 @@ std::string lossless_compress(std::string line) {
   while (!line.empty()) {
     const char c = line[0];
     size_t n = 0;
-    while (line[n] == c) n++;
+    while (line[++n] == c);
 
     out += std::to_string(n) + c;
     line.erase(0, n);

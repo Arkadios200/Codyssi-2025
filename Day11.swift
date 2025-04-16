@@ -18,13 +18,8 @@ func getLines() -> [String] {
   return lines
 }
 
-func exp(_ base: Int, _ pow: Int) -> Int {
-  var out = 1
-  for _ in 0..<pow {
-    out *= base
-  }
-
-  return out
+func exp(_ base: Int, _ power: Int) -> Int {
+  return (0..<power).reduce(1) { (acc, _) in acc * base }
 }
 
 func base10(of s: String) -> Int {

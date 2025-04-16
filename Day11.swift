@@ -11,7 +11,6 @@ extension String {
 func getLines() -> [String] {
   var lines = [String]()
   while let line = readLine() {
-    if line == "" { break }
     lines.append(line)
   }
 

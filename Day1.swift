@@ -13,10 +13,10 @@ func getInput() -> ([Int], [Character]) {
 }
 
 func calc(_ nums: [Int], _ signs: [Character]) -> Int {
-  return nums.dropFirst().enumerated().reduce(nums.first!, {
+  return nums.dropFirst().enumerated().reduce(nums.first!) {
     let (i, e) = $1
     return $0 + e * (signs[i] == "+" ? 1 : -1)
-  } )
+  }
 }
 
 let (nums, signs) = getInput()

@@ -22,12 +22,13 @@ func exp(_ base: Int, _ power: Int) -> Int {
 }
 
 func base10(of s: String) -> Int {
-  let (num, r) = s.splitOnce(separator: " ")!
+  let (n, r) = s.splitOnce(separator: " ")!
+  let num = Array(n)
   let radix = Int(r)!
 
   let digits = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 
-  return Array(num).reversed().enumerated().reduce(0) {
+  return zip(num.indices, num.reversed()).reduce(0) {
     let (i, e) = $1
     return $0 + digits.firstIndex(of: e)! * exp(radix, i)
   }

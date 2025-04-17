@@ -25,5 +25,5 @@ print("Part 1 answer: \(calc(nums, signs))")
 
 print("Part 2 answer: \(calc(nums, signs.reversed()))")
 
-let nums3 = nums.indices.filter( { $0 % 2 == 0 } ).map( { nums[$0] * 10 + nums[$0+1] } )
+let nums3 = nums.indices.filter { $0 % 2 == 0 }.map { nums[$0] * 10 + nums[$0+1] }
 print("Part 3 answer: \(calc(nums3, signs.reversed()))")

@@ -3,7 +3,7 @@ let input = readLine()!
 let total1 = input.filter { $0.isLetter }.count
 print("Part 1 answer: \(total1)")
 
-let letters = Array(" abcdefghijlmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+let letters = Array(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 var temp = input.map { letters.firstIndex(of: $0) ?? 0 }
 
 let total2 = temp.reduce(0, +)

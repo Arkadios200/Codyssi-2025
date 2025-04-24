@@ -12,10 +12,10 @@ func getLines() -> [[ClosedRange<Int>]] {
 
 let lines = getLines()
 
-let total1 = lines.reduce([], +).reduce(0, { $0 + $1.count } )
+let total1 = lines.joined().reduce(0, { $0 + $1.count } )
 print("Part 1 answer: \(total1)")
 
-let temp = lines.map { $0.reduce([], { $0 + Array($1) } ) }
+let temp = lines.map { Array($0.joined()) }
 
 let total2 = temp.reduce(0, { $0 + Set($1).count } )
 print("Part 2 answer: \(total2)")

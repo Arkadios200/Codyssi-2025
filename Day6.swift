@@ -11,7 +11,7 @@ print("Part 2 answer: \(total2)")
 
 for i in temp.indices where temp[i] == 0 {
   let n = temp[i-1] * 2 - 5
-  temp[i] = n + 52 * (n < 1 ? 1 : n > 52 ? -1 : 0)
+  temp[i] = (n + 52) % 52
 }
 
 let total3 = temp.reduce(0, +)
